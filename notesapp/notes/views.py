@@ -8,28 +8,21 @@ def notes_list(request):
     return render(request, "notes/notes_list.html", {"notes": notes})
 
 
-def note_detail(request, pk):
-    note = get_object_or_404(Contact, pk=pk)
-    note = Note.objects.filter(contact=contact)
+def notes_details(request, pk):
+    note = get_object_or_404(Note, pk=pk)
+    note = Note.objects.filter(note=note)
     
-    if note:
-        note = note[0]
-
-    else:
-        note = None
-
-    return render(request, "contacts/detail_contact.html", {"contact": contact, "note": note})
+    return render(request, "notes/notes_details.html", {"notes": notes})
 
 
 def add_note(request):
     if request.method == 'GET':
         form = NoteForm()
-
     else:
         form = NoteForm(data=request.POST)
         if form.is_valid():
             form.save()
-            return redirect(to='list_contacts')
+            return redirect(to='notes_list')
 
     return render(request, "notes/add_note.html", {"form": form})
 
@@ -44,36 +37,16 @@ def edit_note(request, pk):
             form.save()
             return redirect(to='notes_list')
 
-    return render(request, "notes/edit_note.html", {
-        "form": form,
-        "contact": contact
-    })
+    return render(request, "notes/edit_note.html", {"form": form, "note": note})
 
 
 def delete_note(request, pk):
-    contact = get_object_or_404(Contact, pk=pk)
+    note = get_object_or_404(Note, pk=pk)
     if request.method == 'POST':
-        contact.delete()
+        note.delete()
         return redirect(to='notes_list')
 
-    return render(request, "notes/delete_note.html",
-                  {"note": note})
+    return render(request, "notes/delete_note.html", {"note": note})
 
 
-def add_note(request, pk):
-    contact = get_object_or_404(Contact, pk=pk)
 
-    if request.method == 'GET':
-        form = NoteForm()
-
-    else:
-        form = NoteForm(data=request.POST)
-
-        if form.is_valid():
-            note = form.save(commit=False)
-            note.notes = note
-
-            note.save()
-            return redirect(to='list_contacts')
-
-    return render(request, "notes/add_note.html", {"form": form, "note": note})

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>{{ note.title }}</h1>
+
+<div class="flex flex-wrap">
+<div class="w-33 pa3">
+    <h2>{{ note.title }}</h2>
+    <h3>{{ note.created_at }}</h3>
+
+    </div>
+</div>  
+
+{% endblock %}

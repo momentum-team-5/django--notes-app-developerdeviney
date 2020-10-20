@@ -9,6 +9,8 @@ verify_ssl = true
 django = "*"
 django-extensions = "*"
 environ = "*"
+django-environ = "*"
+django-registration-redux = "*"
 
 [requires]
 python_version = "3.9"

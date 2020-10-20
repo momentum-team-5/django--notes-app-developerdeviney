@@ -1,11 +1,17 @@
-<!doctype html>
-<html lang="en-US">
-    <head>
-        <meta charset="utf-8">
-        <title>{% block title %}Notes{% endblock %}</title>
-    </head>
-    <body>
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Notes{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/tachyons.min.css' %}">
+</head>
+<body class="sans-serif pv3 ph2">
+    <div class="mw9 center">
         {% block content %}
         {% endblock %}
-    </body>
+    </div>
+</body>
 </html>
