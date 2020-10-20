@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     'registration',
 
     # local
-    'notes',
+    'notes'
 ]
 
 MIDDLEWARE = [
